@@ -8,34 +8,94 @@
       body {
         font-family: "Comic Sans MS", "Comic Sans", cursive;
         text-align: center;
-        background-image: url("1.jpg");
-        background-size: cover;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
       }
+
+      #initialScreen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-image: url("1.webp");
+        background-size: cover;
+        transition: opacity 1.5s ease-out;
+        opacity: 1;
+      }
+
+      #textTitle {
+        font-size: 3em;
+        color: white;
+        /* margin: 20px; */
+        width: fit-content;
+        padding: 20px;
+        background-color: #ffc0cbd0;
+        border-radius: 30px;
+      }
+
+      #timePassedScreen {
+        display: none;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-image: url("12.jpg");
+        background-size: cover;
+        text-align: center;
+      }
+
       #timePassed {
         font-size: 3.4em;
         color: white;
-        margin-top: 15%;
         font-weight: 800;
       }
-      #textTitle {
-        margin: 0 auto;
-        font-size: 3em;
-        color: white;
-        width: fit-content;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 5%;
+
+      /* Keyframes for the fade-out and fade-in effect */
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .fade-out {
+        animation: fadeOut 0.4s forwards;
+      }
+
+      .fade-in {
+        display: flex !important;
+        animation: fadeIn 0.3s forwards;
       }
     </style>
   </head>
   <body>
-    <h1 id="textTitle">Time Passed Since I Became The Happiest Man In KMLA</h1>
-    <div id="timePassed">0 days, 0 hours, 0 minutes, 0 seconds</div>
+    <div id="initialScreen">
+      <h1 id="textTitle">
+        Time Passed Since I Became The </br>Happiest Man In KMLA
+      </h1>
+    </div>
+
+    <div id="timePassedScreen">
+      <div id="timePassed">0 days, 0 hours, 0 minutes, 0 seconds</div>
+    </div>
 
     <script>
       function updateTimePassed() {
         // Set the specific date and time (year, month-1, day, hours, minutes, seconds)
-        const specificDate = new Date(2024, 9, 1, 0, 2, 0); // October 1, 2023, 10:00:00 AM
+        const specificDate = new Date(2024, 9, 1, 0, 2, 0); // October 1, 2024, 00:02:00 AM
 
         setInterval(() => {
           const currentTime = new Date();
@@ -53,6 +113,24 @@
           ).textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
         }, 1000); // Update every second
       }
+
+      function fadeOutInitialScreen() {
+        const initialScreen = document.getElementById("initialScreen");
+        const timePassedScreen = document.getElementById("timePassedScreen");
+
+        // Add the fade-out class to the initial screen
+        initialScreen.classList.add("fade-out");
+
+        // After 1.5 seconds (duration of the fade-out animation), hide the initial screen
+        setTimeout(() => {
+          initialScreen.style.display = "none";
+          // Show the timePassedScreen by adding fade-in class
+          timePassedScreen.classList.add("fade-in");
+        }, 550);
+      }
+
+      // Attach the click event to trigger the animation
+      document.body.addEventListener("click", fadeOutInitialScreen);
 
       window.onload = updateTimePassed;
     </script>
