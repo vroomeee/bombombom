@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Passed Since YK what lmao</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #timePassed {
+        font-size: 2em;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Time Passed Since a Specific Date</h1>
+    <div id="timePassed">0 days, 0 hours, 0 minutes, 0 seconds</div>
+
+    <script>
+      function updateTimePassed() {
+        // Set the specific date and time (year, month-1, day, hours, minutes, seconds)
+        const specificDate = new Date(2024, 9, 1, 0, 2, 0); // October 1, 2023, 10:00:00 AM
+
+        setInterval(() => {
+          const currentTime = new Date();
+          const timeDifference = Math.floor(
+            (currentTime - specificDate) / 1000
+          );
+
+          const days = Math.floor(timeDifference / (3600 * 24));
+          const hours = Math.floor((timeDifference % (3600 * 24)) / 3600);
+          const minutes = Math.floor((timeDifference % 3600) / 60);
+          const seconds = timeDifference % 60;
+
+          document.getElementById(
+            "timePassed"
+          ).textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }, 1000); // Update every second
+      }
+
+      window.onload = updateTimePassed;
+    </script>
+  </body>
+</html>
