@@ -1,0 +1,95 @@
+body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+#initialScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url("1.webp");
+  background-size: cover;
+  opacity: 1;
+}
+
+#textTitle {
+  font-size: 3em;
+  color: white;
+  /* margin: 20px; */
+  width: fit-content;
+  padding: 20px;
+  background-color: #ffc0cbd20;
+  border-radius: 30px;
+}
+
+#timePassedScreen {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-image: url("12.jpg");
+  background-size: cover;
+  text-align: center;
+}
+
+#timePassed {
+  font-size: 3.4em;
+  color: white;
+  font-weight: 800;
+}
+
+/* Keyframes for the fade-out and fade-in effect */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.4s forwards;
+}
+
+.fade-in {
+  display: flex !important;
+  animation: fadeIn 0.3s forwards;
+}
+
+@media only screen and (max-width: 480px) {
+  #initialScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("bg_phone.png");
+    background-size: cover;
+  }
+  #timePassedScreen {
+    background-position-x: center;
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url("bg_phone_dday.jpg");
+    background-size: cover;
+    text-align: center;
+  }
+}
